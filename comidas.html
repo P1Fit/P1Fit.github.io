@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registrar Comida - P1Fit</title>
+  <link rel="stylesheet" href="css/comidas.css" />
+</head>
+<body>
+
+  <header>
+    <h1>P1Fit - Registrar Comida</h1>
+  </header>
+
+  <div class="container">
+    <h2>Selecciona tus comidas</h2>
+
+    <!-- Secciones de categorías -->
+    <div id="seccionesCategorias"></div>
+
+    <!-- Botón de registro -->
+    <button onclick="registrarTodasLasComidas()">Registrar mi comida</button>
+
+    <!-- Agregar nuevo alimento -->
+    <span class="agregar-nuevo" onclick="abrirModal()">
+      ¿No aparece tu comida? Agregar nueva
+    </span>
+  </div>
+
+  <!-- Modal para nuevo alimento -->
+  <div class="modal" id="modalNuevoAlimento">
+    <div class="modal-content">
+      <h3>Agregar nuevo alimento</h3>
+
+      <label for="nuevaCategoria">Categoría</label>
+      <select id="nuevaCategoria" required></select>
+
+      <label for="nuevoNombre">Nombre del alimento</label>
+      <input type="text" id="nuevoNombre"/>
+
+      <label for="nuevoCalorias">Calorías</label>
+      <input type="number" id="nuevoCalorias"/>
+
+      <label for="nuevoProteinas">Proteínas (g)</label>
+      <input type="number" id="nuevoProteinas"/>
+
+      <label for="nuevoCarbohidratos">Carbohidratos (g)</label>
+      <input type="number" id="nuevoCarbohidratos"/>
+
+      <label for="nuevoGrasas">Grasas (g)</label>
+      <input type="number" id="nuevoGrasas"/>
+
+      <label for="nuevoVitaminas">Vitaminas</label>
+      <input type="text" id="nuevoVitaminas"/>
+
+      <button onclick="guardarNuevoAlimento()">Guardar alimento</button>
+      <button onclick="cerrarModal()" style="background: gray; margin-top: 1rem;">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/alimentos.js"></script>
+  <script src="js/comidas.js"></script>
+
+   <footer style="text-align: center; padding: 1rem 0; background-color: #f4f9ff; color: #555; font-size: 0.9rem; margin-top: 2rem;">
+  &copy; 2025 P1Fit. Todos los derechos reservados.
+</footer>
+</body>
+</html>
