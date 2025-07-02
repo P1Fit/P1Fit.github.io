@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     const nombreInput = document.getElementById('nombre').value.trim();
-    const correoInput = document.getElementById('correo').value.trim();
     const alturaInput = parseFloat(document.getElementById('altura').value);
     const pesoInput = parseFloat(document.getElementById('peso').value);
     const edadInput = parseInt(document.getElementById('edad').value, 10);
@@ -56,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     alert('Datos guardados correctamente. Ahora podés ir al Dashboard.');
     // Si quieres redirigir luego, descomenta la línea siguiente:
-    window.location.href = 'dashboard.html';
+    window.location.href = './dashboard.html';
+  }}}
   });
 });
