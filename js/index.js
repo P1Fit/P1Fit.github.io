@@ -55,8 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     alert('Datos guardados correctamente. Ahora podés ir al Dashboard.');
     // Si quieres redirigir luego, descomenta la línea siguiente:
-    const base = window.location.pathname.split('/')[1]; // ejemplo: 'p1fit'
-    window.location.href = /${base}/dashboard.html;
-  }}}
+    window.location.href = './dashboard.html';
   });
 });
