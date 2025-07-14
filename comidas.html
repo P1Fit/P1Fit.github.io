@@ -8,27 +8,36 @@
 </head>
 <body>
 
-  <header>
-    <h1>P1Fit - Registrar Comida</h1>
-  </header>
+<header>
+  <button onclick="window.location.href='dashboard.html'" class="btn-volver">&lt; Volver</button>
+  <h1 class="header-title">P1Fit - Registrar Comida</h1>
+  <div class="btn-volver espacio-equilibrio">Volver a</div> <!-- espacio para balancear visualmente -->
+</header>
+
+
+
 
   <div class="container">
+
+    <!-- Barra de búsqueda -->
+    <input type="text" id="barraBusqueda" placeholder="Buscar alimento..." autocomplete="off" />
+
+    <!-- BOTONES SUPERIORES -->
+    <div class="botones-superiores">
+      <button id="btnRegistrarComida">Registrar mi comida</button>
+      <button id="btnAgregarNuevo">+ Agregar nuevo alimento</button>
+    </div>
+
     <h2>Selecciona tus comidas</h2>
 
-    <!-- Secciones de categorías -->
-    <div id="seccionesCategorias"></div>
+    <div class="categorias-container" id="seccionesCategorias">
+      <!-- Aquí se insertan las .categoria-box -->
+    </div>
 
-    <!-- Botón de registro -->
-    <button onclick="registrarTodasLasComidas()">Registrar mi comida</button>
-
-    <!-- Agregar nuevo alimento -->
-    <span class="agregar-nuevo" onclick="abrirModal()">
-      ¿No aparece tu comida? Agregar nueva
-    </span>
   </div>
 
-  <!-- Modal para nuevo alimento -->
-  <div class="modal" id="modalNuevoAlimento">
+  <!-- MODAL PARA NUEVO ALIMENTO -->
+  <div class="modal" id="modalNuevoAlimento" style="display:none;">
     <div class="modal-content">
       <h3>Agregar nuevo alimento</h3>
 
@@ -53,17 +62,21 @@
       <label for="nuevoVitaminas">Vitaminas</label>
       <input type="text" id="nuevoVitaminas"/>
 
-      <button onclick="guardarNuevoAlimento()">Guardar alimento</button>
-      <button onclick="cerrarModal()" style="background: gray; margin-top: 1rem;">Cancelar</button>
+      <!-- Botones dentro del contenedor correcto -->
+      <div class="botones-modal">
+        <button id="btnGuardarNuevo" class="guardar">Guardar alimento</button>
+        <button id="btnCerrarModal" class="cancelar">Cancelar</button>
+      </div>
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- FOOTER -->
+  <footer style="text-align: center; padding: 1rem 0; background-color: #f4f9ff; color: #555; font-size: 0.9rem; margin-top: 2rem;">
+    &copy; 2025 P1Fit. Todos los derechos reservados.
+  </footer>
+
+  <!-- SCRIPTS -->
   <script src="js/alimentos.js"></script>
   <script src="js/comidas.js"></script>
-
-   <footer style="text-align: center; padding: 1rem 0; background-color: #f4f9ff; color: #555; font-size: 0.9rem; margin-top: 2rem;">
-  &copy; 2025 P1Fit. Todos los derechos reservados.
-</footer>
 </body>
 </html>
