@@ -4,21 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>P1Fit - Dashboard</title>
-  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/comidas.css" />
 </head>
 <body>
-<header style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background-color: #3dbeff; color: white; position: relative;">
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 80px; background-color: #3dbeff; color: white;">
+  <!-- Contenedor logo + texto -->
   <div style="display: flex; align-items: center; gap: 0.7rem;">
-    <img src="assets/logo.png" alt="Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-    <h1 style="margin: 0; font-size: 1.5rem;">P1Fit</h1>
+    <img src="assets/logo.png" alt="Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
+    <h1 class="header-title" style="margin: 0; font-size: 1.5rem;">P1Fit</h1>
   </div>
 
+  <!-- Botón de ajustes a la derecha -->
   <div style="position: relative;">
     <button id="menuBtn" style="background: none; border: none; cursor: pointer; padding: 0;">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <path d="M6 9l6 6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
       </svg>
     </button>
+
     <ul id="menuOpciones" style="
       display: none;
       position: absolute;
@@ -37,125 +42,109 @@
       <li style="padding: 0.6rem 1.5rem; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#e0f0ff'" onmouseout="this.style.background='white'" onclick="window.location.href='index.html'">Editar datos</li>
       <li style="padding: 0.6rem 1.5rem; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#e0f0ff'" onmouseout="this.style.background='white'" onclick="document.getElementById('inputImportarArchivo').click()">Importar</li>
       <input type="file" id="inputImportarArchivo" accept=".txt" style="display: none;">
-
     </ul>
   </div>
 </header>
 
+<div class="container">
+  <div class="bienvenida" id="saludoUsuario">¡Bienvenido de nuevo!</div>
+
+ <div class="tu-racha-text">Tu racha</div>
+<div style="display: flex; align-items: center; gap: 0.5rem;">
+  <progress id="barraRacha" value="0" max="30"></progress>
+</div>
 
 
-  
-  <div class="container">
-    <div class="bienvenida" id="saludoUsuario">¡Bienvenido de nuevo!</div>
+  <div class="dashboard-main">
 
-    <div class="info-box">
-      <div class="card">
-        <h2>Fecha de hoy</h2>
-        <p id="fechaActual">--/--/----</p>
-      </div>
-      <div class="card">
-        <h2>Racha actual</h2>
-        <p id="rachaDias">0 días</p>
-      </div>
-      <div class="card">
-        <h2>Calorías hoy</h2>
-        <p id="caloriasHoy">0 kcal</p>
-      </div>
-      <div class="card">
-       <h2>Calorías totales</h2>
-       <p id="caloriasTotales">0 kcal</p>
-      </div>
-      <div class="card">
-        <h2>Comidas registradas</h2>
-        <p id="comidasHoy">0</p>
+    <!-- Contenedor pequeño a la izquierda -->
+    <div class="info-group" id="infoGroup">
+      <div class="info-box" id="infoBox">
+        <div class="card">
+          <h2>Fecha de hoy</h2>
+          <p id="fechaActual">--/--/----</p>
+        </div>
+        <div class="card">
+          <h2>Racha actual</h2>
+          <p id="rachaDias">0 días</p>
+        </div>
+        <div class="card">
+          <h2>Calorías hoy</h2>
+          <p id="caloriasHoy">0 kcal</p>
+        </div>
+        <div class="card">
+          <h2>Calorías totales</h2>
+          <p id="caloriasTotales">0 kcal</p>
+        </div>
+        <div class="card">
+          <h2>Comidas registradas</h2>
+          <p id="comidasHoy">0</p>
+        </div>
       </div>
     </div>
-<progress id="barraRacha" value="0" max="30" style="width: 100%; height: 20px;"></progress>
 
-    <div class="comidas-recientes" style="max-width: 900px; margin: 2rem auto;">
-        
-  <h2 style="color: #3dbeff;">Tus comidas</h2>
-  <ul id="listaComidas" style="list-style: none; padding: 0;"></ul>
-  <button id="desplegarBtn" style="display: none; margin-top: 1rem; background-color: #3dbeff; color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 10px; cursor: pointer;">Ver todas</button>
-  <br><br>
-  <a href="comidas.html" style="display: inline-block; margin-top: 1rem; background-color: #3dbeff; color: white; text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 10px;">Registrar nueva comida</a>
-<button id="btnMostrarReportes" style="
-  display: inline-block; 
-  margin-top: 1rem; 
-  background-color: #3dbeff; 
-  color: white; 
-  border: none; 
-  padding: 0.7rem 0.7rem; 
-  border-radius: 12px; 
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: 700;  
-">Reportes</button>
-  <!-- Contenedor para el reporte y controles -->
-<div id="reporteContainer" style="display:none; max-width: 900px; margin: 2rem auto; background: #f4f9ff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-  <h2 style="color: #3dbeff; margin-bottom: 1rem;">Previsualización de Reporte</h2>
-  <pre id="previsualizacionReporte" style="white-space: pre-wrap; background: #e0f0ff; padding: 15px; border-radius: 8px; height: 300px; overflow-y: auto; font-family: monospace;"></pre>
-  
-  <button id="btnDescargarReporte" style="background-color: #3dbeff; color: white; border: none; padding: 1rem 2rem; border-radius: 12px; cursor: pointer; font-size: 1.2rem; font-weight: 600; margin-top: 1rem;">Exportar .TXT</button>
+    <!-- Contenedor comidas en medio -->
+    <div class="comidas-recientes" id="comidasRecientes">
+      <h2>Tus comidas</h2>
+      <ul id="listaComidas" style="list-style:none; padding:0; margin:0;"></ul>
+      <a href="comidas.html" id="registrarComidaBtn">Registrar nueva comida</a>
+      <button id="btnMostrarReportes">Reportes</button>
 
-   <button id="btnReporteHTML" style="background-color: #3dbeff; color: white; border: none; padding: 1rem 2rem; border-radius: 12px; cursor: pointer; font-size: 1.2rem; font-weight: 600; margin-top: 1rem;">Descargar</button>
-
-  <p id="mensajeEnvio" style="color: green; margin-top: 1rem; display:none;"></p>
-</div>
-
-</div>
-
-
- <div class="graficos-contenedor">
-  <div class="grafico-box">
-    <canvas id="proteinasChart" width="150" height="150"></canvas>
-    <div class="texto-grafico" style="color: #3dbeff;">Proteínas: <span id="proteinasPorcentaje">0%</span></div>
-  </div>
-
-  <div class="grafico-box">
-    <canvas id="carbosChart" width="150" height="150"></canvas>
-    <div class="texto-grafico" style="color: #00bcd4;">Carbohidratos: <span id="carbosPorcentaje">0%</span></div>
-  </div>
-
-  <div class="grafico-box">
-    <canvas id="grasasChart" width="150" height="150"></canvas>
-    <div class="texto-grafico" style="color: #ff9800;">Grasas: <span id="grasasPorcentaje">0%</span></div>
-  </div>
-</div>
-
-
-  <div class="container">
-<div class="metas-box card">
-  <h2>Metas diarias</h2>
-  <form id="formMetas">
-    <label>
-      Proteínas (g):
-      <input type="number" id="metaProteinas" min="0" step="1" required />
-    </label>
-    <label>
-      Carbohidratos (g):
-      <input type="number" id="metaCarbohidratos" min="0" step="1" required />
-    </label>
-    <label>
-      Grasas (g):
-      <input type="number" id="metaGrasas" min="0" step="1" required />
-    </label>
-    <button type="submit">Guardar metas</button>
-  </form>
-</div>
-</div>
-    <div class="recomendacion-box">
-      <h2>Recomendación del día</h2>
-      <p id="mensajeRecomendacion">Cargando recomendación...</p>
+      <div id="reporteContainer" style="display:none; margin-top: 1rem; background: #f4f9ff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <h2 style="color: #3dbeff; margin-bottom: 1rem;">Previsualización de Reporte</h2>
+        <pre id="previsualizacionReporte" style="white-space: pre-wrap; background: #e0f0ff; padding: 15px; border-radius: 8px; height: 300px; overflow-y: auto; font-family: monospace;"></pre>
+        <button id="btnDescargarReporte">Exportar .TXT</button>
+        <button id="btnReporteHTML">Descargar</button>
+        <p id="mensajeEnvio" style="color: green; margin-top: 1rem; display:none;"></p>
+      </div>
     </div>
 
-    <nav>
-      <a href="mision_vision.html">Sobre Nosotros</a>
-    </nav>
+    <!-- Contenedor metas a la derecha -->
+    <div class="metas-box card" id="metasBox">
+      <h2>Metas diarias</h2>
+      <form id="formMetas">
+        <label>
+          Proteínas (g):
+          <input type="number" id="metaProteinas" min="0" step="1" required />
+        </label>
+        <label>
+          Carbohidratos (g):
+          <input type="number" id="metaCarbohidratos" min="0" step="1" required />
+        </label>
+        <label>
+          Grasas (g):
+          <input type="number" id="metaGrasas" min="0" step="1" required />
+        </label>
+        <button type="submit">Guardar metas</button>
+      </form>
+    </div>
+
+  </div> <!-- fin dashboard-main -->
+
+  <div class="graficos-contenedor" id="graficosContenedor">
+    <div class="grafico-box">
+      <canvas id="proteinasChart" width="200" height="240"></canvas>
+      <div class="texto-grafico" style="color: #3dbeff;">Proteínas: <span id="proteinasPorcentaje">0%</span></div>
+    </div>
+    <div class="grafico-box">
+      <canvas id="carbosChart" width="200" height="240"></canvas>
+      <div class="texto-grafico" style="color: #00bcd4;">Carbohidratos: <span id="carbosPorcentaje">0%</span></div>
+    </div>
+    <div class="grafico-box">
+      <canvas id="grasasChart" width="200" height="240"></canvas>
+      <div class="texto-grafico" style="color: #ff9800;">Grasas: <span id="grasasPorcentaje">0%</span></div>
+    </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="js/dashboard.js"></script>
-  <footer style="text-align: center; padding: 1rem 0; background-color: #f4f9ff; color: #555; font-size: 0.9rem; margin-top: 2rem;">
+
+  <nav>
+    <a href="mision_vision.html">Sobre Nosotros</a>
+  </nav>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/dashboard.js"></script>
+
+<footer>
   &copy; 2025 P1Fit. Todos los derechos reservados.
 </footer>
 

@@ -22,6 +22,7 @@ function limpiarFormularioNuevoAlimento() {
   document.getElementById("nuevaCategoria").value = "";
 }
 
+
 function guardarNuevoAlimento() {
   const categoriaSelect = document.getElementById("nuevaCategoria");
   const nuevo = {
